@@ -1,0 +1,14 @@
+jupyter
+pandas
+geopandas
+cx-Oracle
+pyodbc
+matplotlib
+Django >=3.0,<4.0
+Flask >=2.1,<3
+psycopg2-binary>=2.8
+djangorestframework >=3.0,<4.0
+mysqlclient>=2.0
+Faker
+fastapi
+pyspark

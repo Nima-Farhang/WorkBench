@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  jupyter:
+    container_name: jupyter
+    command: jupyter notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root --NotebookApp.token=''
+    build: .
+    ports:
+      - "8888:8888"
+      - "5000:5000"
+      - "8080:8080"
+    volumes:
+      - ./code:/usr/src/app/code
+      - ./data/jupyter:/usr/src/app/data
+    depends_on:
+      - "pgdb"
+
+  pgdb:
+    # image name
+    image: postgis/postgis
+    container_name: pgdb
+    volumes:
+      - ./data/pgdb:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=backend-db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Samira@1975Samira@1975
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin/sessions
+    ports:
+      - "80:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=nima.farhang@utilez.com
+      - PGADMIN_DEFAULT_PASSWORD=Samira@1975Samira@1975
+    depends_on:
+      - pgdb
+    links:
+      - pgdb
