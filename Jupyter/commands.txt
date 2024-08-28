@@ -1,0 +1,5 @@
+######### For building the image with the files already there 
+
+docker-compose up -d
+
+docker exec -it jupyter bash

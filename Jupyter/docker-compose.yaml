@@ -12,3 +12,8 @@ services:
     volumes:
       - ./code:/usr/src/app/code
       - ./data/jupyter:/usr/src/app/data
+    environment:
+      - AWS_ACCESS_KEY_ID=${aws_key_id}
+      - AWS_SECRET_ACCESS_KEY=${aws_secret_key}
+      - AWS_REGION=${region}
+      - AWS_BUCKER=${landing-bucket-dev-767397659305}
